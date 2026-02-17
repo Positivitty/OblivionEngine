@@ -1,6 +1,6 @@
 {
-  "name": "commandcanvas",
-  "productName": "CommandCanvas",
+  "name": "oblivion-engine",
+  "productName": "OblivionEngine",
   "version": "1.0.0",
   "description": "A visual terminal application with command panels and ASCII animations",
   "main": ".vite/build/index.js",
