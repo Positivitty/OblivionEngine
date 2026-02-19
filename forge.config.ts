@@ -1,5 +1,6 @@
 import type { ForgeConfig } from '@electron-forge/shared-types';
 import { MakerSquirrel } from '@electron-forge/maker-squirrel';
+import { MakerDMG } from '@electron-forge/maker-dmg';
 import { MakerZIP } from '@electron-forge/maker-zip';
 import { MakerDeb } from '@electron-forge/maker-deb';
 import { VitePlugin } from '@electron-forge/plugin-vite';
@@ -30,6 +31,9 @@ const config: ForgeConfig = {
     new MakerSquirrel({
       iconUrl: 'https://raw.githubusercontent.com/swosu/House_Aaron/main/assets/icon.ico',
       setupIcon: path.resolve(__dirname, 'assets', 'icon.ico'),
+    }),
+    new MakerDMG({
+      icon: path.resolve(__dirname, 'assets', 'icon.icns'),
     }),
     new MakerZIP({}, ['darwin']),
     new MakerDeb({

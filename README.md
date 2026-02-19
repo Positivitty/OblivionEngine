@@ -31,13 +31,13 @@ xcode-select --install
 
 ### Windows
 
-You need a C++ build toolchain for `node-pty`. The easiest way:
+You need a C++ build toolchain for compiling the native `node-pty` module:
 
-```bash
-npm install -g windows-build-tools
-```
+1. Install [Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+2. During installation, select the **"Desktop development with C++"** workload
+3. Restart your terminal after installation
 
-Or install Visual Studio Build Tools with the "Desktop development with C++" workload.
+If you already have Visual Studio 2019 or newer with the C++ workload, you're all set.
 
 ### Linux (Debian/Ubuntu)
 
@@ -142,6 +142,8 @@ OblivionEngine/
 ### `npm install` fails with node-pty errors
 
 `node-pty` is a native module that needs to be compiled. Make sure you have the build tools for your OS installed (see Prerequisites above).
+
+> **Windows users:** If you see `node-gyp failed to rebuild` errors, make sure Visual Studio Build Tools are installed with the "Desktop development with C++" workload, then delete `node_modules` and run `npm install` again.
 
 ### App launches but terminal is blank
 
