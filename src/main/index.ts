@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, nativeImage } from 'electron';
 import * as path from 'path';
 import { Logger } from './logger';
 import { ConfigManager } from './config-manager';
@@ -25,6 +25,9 @@ import { WarningEngine } from './warning-engine';
  *   Step 8: Create BrowserWindow
  *   Step 9: Load renderer
  */
+
+// Set app name before ready (used in menus, about panel, etc.)
+app.name = 'Oblivion Engine';
 
 // Global error handlers to prevent silent crashes
 process.on('uncaughtException', (error) => {
@@ -136,6 +139,15 @@ async function createWindow(): Promise<void> {
 
 // Step 1: Wait for Electron to be ready
 app.whenReady().then(async () => {
+  // Set macOS dock icon (BrowserWindow icon property doesn't affect the dock)
+  if (process.platform === 'darwin' && app.dock) {
+    const iconPath = path.join(__dirname, '../../assets/icon.png');
+    const dockIcon = nativeImage.createFromPath(iconPath);
+    if (!dockIcon.isEmpty()) {
+      app.dock.setIcon(dockIcon);
+    }
+  }
+
   try {
     await createWindow();
   } catch (err) {
