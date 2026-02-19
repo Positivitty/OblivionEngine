@@ -81,6 +81,7 @@ async function createWindow(): Promise<void> {
 
   // Step 8: Create BrowserWindow
   mainWindow = new BrowserWindow({
+    icon: path.join(__dirname, '../../assets/icon.png'),
     width: DEFAULT_WINDOW_WIDTH,
     height: DEFAULT_WINDOW_HEIGHT,
     webPreferences: {

@@ -4,19 +4,26 @@ import { MakerZIP } from '@electron-forge/maker-zip';
 import { MakerDeb } from '@electron-forge/maker-deb';
 import { VitePlugin } from '@electron-forge/plugin-vite';
 import { AutoUnpackNativesPlugin } from '@electron-forge/plugin-auto-unpack-natives';
+import path from 'path';
 
 const config: ForgeConfig = {
   packagerConfig: {
+    icon: path.resolve(__dirname, 'assets', 'icon'),
     asar: {
       unpack: '**/node_modules/node-pty/**',
     },
   },
   rebuildConfig: {},
   makers: [
-    new MakerSquirrel({}),
+    new MakerSquirrel({
+      iconUrl: 'https://raw.githubusercontent.com/swosu/House_Aaron/main/assets/icon.ico',
+      setupIcon: path.resolve(__dirname, 'assets', 'icon.ico'),
+    }),
     new MakerZIP({}, ['darwin']),
     new MakerDeb({
-      options: {},
+      options: {
+        icon: path.resolve(__dirname, 'assets', 'icon.png'),
+      },
     }),
   ],
   plugins: [
